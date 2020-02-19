@@ -9,10 +9,12 @@ This File describes various components written and the intent behind them
 4. We can receive same timestamp at varied interval. 
 
 # Modules
+##HttpLogMonitor
 HTTPLogMonitor is the main prog which takes two arguments sample log file and the config file
 Command to Run: python HttpLogMonitor.py --input_file <logfile> --config_file <config file  optional argument >
 
-Config File:
+##Config File:
+```
 Sample Config File:
 {
   "stats_time": 10,
@@ -23,6 +25,7 @@ Sample Config File:
   "print_stats_in_the_end": 1,
   "flush_state":130
 }
+```
 Meaning of each attribute in the config file
 stats_time : This will indicate the window for which we'll be monitoring statistics. In this code I'm monitoring total hits, hits per user, hits per request, hits per status, hits per host
 monitor_time: This will indicate the window for which we'll be generating alerts i.e. QPS allowed in a specific range or not
