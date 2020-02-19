@@ -8,7 +8,8 @@ This File describes various components written and the intent behind them
 3. We can receive duplicate log at varied interval
 4. We can receive same timestamp at varied interval. 
 
-#Block Diagram
+# Block Diagram
+![BlockDiagram](https://github.com/deepti0905/HttpLogMonitor/blob/master/DataDogHttpMonitor.png)
 
 # Modules
 ## HttpLogMonitor
