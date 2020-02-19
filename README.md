@@ -11,9 +11,11 @@ This File describes various components written and the intent behind them
 # Modules
 ## HttpLogMonitor
 HTTPLogMonitor is the main prog which takes two arguments sample log file and the config file
+
 ``
 Command to Run: python HttpLogMonitor.py --input_file <logfile> --config_file <config file  optional argument >
 ``
+
 ## Config File:
 ```
 Sample Config File:
@@ -28,13 +30,13 @@ Sample Config File:
 }
 ```
 Meaning of each attribute in the config file
-1. stats_time : This will indicate the window for which we'll be monitoring statistics. In this code I'm monitoring total hits, hits per user, hits per request, hits per status, hits per host
+1. *stats_time* : This will indicate the window for which we'll be monitoring statistics. In this code I'm monitoring total hits, hits per user, hits per request, hits per status, hits per host
 monitor_time: This will indicate the window for which we'll be generating alerts i.e. QPS allowed in a specific range or not
-2. max_qps: This indicates the MAX QPS allowed in the monitor time window
-3. min_qps: This indicates the MIN QPS allowed in the monitor time window
-4. alert_purge_freq: We are assuming the log file is huge and it can be possible that the user may not want to wait till the entire file is read to generate alerts. With this setting we'll purge statistics and monitor stats on the screen after every x logs (where x is alert purge Freq). Please note too low alert_purge_freq can result in false alarms.
-5. print_stats_in_the_end: This is a boolean parameter, which if provided we will print statistics in the end, by that we'll ignore alert purge freq
-6. flush_state: We know the log file is huge and we may not be able to contain it in memory. With this setting we'll flush the old keys and we'll always maintain timestamps being considered and in memory as maximum as flush_state. The recommended flush_state must be greater than monitor time window
+2. *max_qps*: This indicates the MAX QPS allowed in the monitor time window
+3. *min_qps*: This indicates the MIN QPS allowed in the monitor time window
+4. *alert_purge_freq*: We are assuming the log file is huge and it can be possible that the user may not want to wait till the entire file is read to generate alerts. With this setting we'll purge statistics and monitor stats on the screen after every x logs (where x is alert purge Freq). Please note too low alert_purge_freq can result in false alarms.
+5. *print_stats_in_the_end*: This is a boolean parameter, which if provided we will print statistics in the end, by that we'll ignore alert purge freq
+6. *flush_state*: We know the log file is huge and we may not be able to contain it in memory. With this setting we'll flush the old keys and we'll always maintain timestamps being considered and in memory as maximum as flush_state. The recommended flush_state must be greater than monitor time window
 
 ## Parser:
 Parser can be visualized as a real life component that will be receiving streams of logs. I've purposefully went over one line at a time rather than loading complete file in memory. Parser will be maintaining a member variable logState and Alert and will keep updating them from time to time
@@ -42,10 +44,10 @@ Parser can be visualized as a real life component that will be receiving streams
 ## LogState:
 Maintains SortedDictionary of Logs
 Information is saved as 
+```
 <TimeStamp>- List of LogLines 
-In the realworld system it can be possible that same log is received multiple times due to change in network topology. LogState will only maintain
-unique logs in memory, duplicate logs will be ignored. LogState also has a support of clearing old logs from memory, this is goverened by parameter
-flush_state in the config
+```
+In the realworld system it can be possible that same log is received multiple times due to change in network topology. LogState will only maintain unique logs in memory, duplicate logs will be ignored. LogState also has a support of clearing old logs from memory, this is goverened by parameter flush_state in the config
 
 ## Alert:
 This module will maintain statistics wrt to time for logs. We can either purge the statistics at a frequency (param alert_purge_freq in the config) or we can generate a consolidated report in the end.
