@@ -8,6 +8,8 @@ This File describes various components written and the intent behind them
 3. We can receive duplicate log at varied interval
 4. We can receive same timestamp at varied interval. 
 
+#Block Diagram
+
 # Modules
 ## HttpLogMonitor
 HTTPLogMonitor is the main prog which takes two arguments sample log file and the config file
@@ -55,6 +57,13 @@ This module will maintain statistics wrt to time for logs. We can either purge t
 ## LogLine:
 Is a structure which contains log attributes stored as member variables
 
+## Tests
+Present in the tests folder
+Command: 
+```
+python AlertTests.py 
+```
+(All the required files are placed relative to this script)
 
 ## Future Scope on How this can be converted into real world.
 1. HttpLogMonitor can act as a load balancer for logs

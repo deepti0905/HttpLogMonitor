@@ -1,0 +1,9 @@
+{
+  "stats_time": 20,
+  "monitor_time": 5,
+  "max_qps": 3,
+  "min_qps": 2,
+  "alert_purge_freq": 2,
+  "print_stats_in_the_end": 1,
+  "flush_state":130
+}
