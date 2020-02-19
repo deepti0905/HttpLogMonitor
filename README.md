@@ -11,8 +11,9 @@ This File describes various components written and the intent behind them
 # Modules
 ## HttpLogMonitor
 HTTPLogMonitor is the main prog which takes two arguments sample log file and the config file
+``
 Command to Run: python HttpLogMonitor.py --input_file <logfile> --config_file <config file  optional argument >
-
+``
 ## Config File:
 ```
 Sample Config File:
